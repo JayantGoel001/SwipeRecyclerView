@@ -3,7 +3,6 @@ package com.example.swiperecyclerview
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,7 +15,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
     lateinit var dummyList: ArrayList<User>
-    lateinit var coordinateLayout:CoordinatorLayout
+    private lateinit var coordinateLayout:CoordinatorLayout
     lateinit var swipeRecyclerAdapter: SwipeRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,17 +26,17 @@ class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.setHomeButtonEnabled(true)
         }
-        dummyList=ArrayList<User>()
+        dummyList=ArrayList()
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager=LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
-        swipeRecyclerAdapter=SwipeRecyclerAdapter(this,dummyList)
+        swipeRecyclerAdapter=SwipeRecyclerAdapter(dummyList)
         recyclerView.adapter=swipeRecyclerAdapter
 
         val callback:ItemTouchHelper.SimpleCallback=RecyclerTouchHelper(ItemTouchHelper.UP or ItemTouchHelper.DOWN,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT, this)
         val itemTouchHelper=ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
-        coordinateLayout=findViewById<CoordinatorLayout>(R.id.swipeCoordinate)
+        coordinateLayout=findViewById(R.id.swipeCoordinate)
         for (i in 0..16)
         {
             dummyList.add(User("Title${i}","SubTitle${i*i}"))
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
     }
 
     override fun onSwipe(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
-        val name= dummyList[viewHolder.adapterPosition].title
+        //val name= dummyList[viewHolder.adapterPosition].title
         val deletedItem=dummyList[viewHolder.adapterPosition]
         val deletedIndex=viewHolder.adapterPosition
         swipeRecyclerAdapter.removeItems(viewHolder.adapterPosition)

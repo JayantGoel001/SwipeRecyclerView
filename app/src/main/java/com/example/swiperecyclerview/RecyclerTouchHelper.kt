@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerTouchHelper(val dragDirs:Int,val swipeDirs:Int,val recyclerItemTouchHelperListener: RecyclerItemTouchHelperListener): ItemTouchHelper.SimpleCallback(dragDirs,swipeDirs) {
+class RecyclerTouchHelper(dragDirs:Int, swipeDirs:Int, private val recyclerItemTouchHelperListener: RecyclerItemTouchHelperListener): ItemTouchHelper.SimpleCallback(dragDirs,swipeDirs) {
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         if(viewHolder.itemViewType!=target.itemViewType)
         {

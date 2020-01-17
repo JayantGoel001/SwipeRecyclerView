@@ -1,6 +1,5 @@
 package com.example.swiperecyclerview
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SwipeRecyclerAdapter(context: Context,var list:ArrayList<User>) :RecyclerView.Adapter<SwipeRecyclerAdapter.ViewHolder>(){
+class SwipeRecyclerAdapter(private var list: ArrayList<User>) :RecyclerView.Adapter<SwipeRecyclerAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.list_item_swipe_recycler,parent,false)
         return  ViewHolder(view)
@@ -35,7 +34,7 @@ class SwipeRecyclerAdapter(context: Context,var list:ArrayList<User>) :RecyclerV
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
     {
-        val imgCircle=itemView.findViewById<ImageView>(R.id.imgCircle)
+        //val imgCircle=itemView.findViewById<ImageView>(R.id.imgCircle)
         val txtTitle=itemView.findViewById<TextView>(R.id.txtSwipeTitle)
         val txtSubTitle=itemView.findViewById<TextView>(R.id.txtSwipeSubTitle)
         val rel_foreground=itemView.findViewById<RelativeLayout>(R.id.rel_foreground)
