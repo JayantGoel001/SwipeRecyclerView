@@ -36,6 +36,11 @@ class RecyclerTouchHelper(val dragDirs:Int,val swipeDirs:Int,val recyclerItemTou
             val view:View=viewHolder.rel_foreground
             ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c,recyclerView,view,dX,dY,actionState,isCurrentlyActive)
         }
+        if(viewHolder is SwipeRecyclerAdapter.ViewHolder)
+        {
+            val view:View=viewHolder.rel_foreground
+            ItemTouchHelper.Callback.getDefaultUIUtil().onDraw(c, recyclerView, view, dX, dY, actionState, isCurrentlyActive)
+        }
     }
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {

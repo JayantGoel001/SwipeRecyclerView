@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
     lateinit var dummyList: ArrayList<User>
@@ -32,13 +34,13 @@ class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
         swipeRecyclerAdapter=SwipeRecyclerAdapter(this,dummyList)
         recyclerView.adapter=swipeRecyclerAdapter
 
-        val callback:ItemTouchHelper.SimpleCallback=RecyclerTouchHelper(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT, this)
+        val callback:ItemTouchHelper.SimpleCallback=RecyclerTouchHelper(ItemTouchHelper.UP or ItemTouchHelper.DOWN,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT, this)
         val itemTouchHelper=ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
         coordinateLayout=findViewById<CoordinatorLayout>(R.id.swipeCoordinate)
         for (i in 0..16)
         {
-            dummyList.add(User("Title","SubTitle"))
+            dummyList.add(User("Title${i}","SubTitle${i*i}"))
         }
         recyclerView.adapter!!.notifyDataSetChanged()
     }
@@ -63,6 +65,8 @@ class MainActivity : AppCompatActivity(),RecyclerItemTouchHelperListener{
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) :Boolean{
+        Collections.swap(dummyList,fromPosition,toPosition)
+        swipeRecyclerAdapter.notifyItemMoved(fromPosition,toPosition)
         return true
     }
 }
