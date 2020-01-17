@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/rel_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_black_24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtBack"
+            android:layout_alignParentEnd="true"
+            android:text="@string/deleting"
+            android:textColor="@android:color/white"
+            />
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rel_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
+        android:padding="10dp"
+        >
+        <ImageView
+            android:id="@+id/imgCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_account_circle_black_24dp"/>
+        <TextView
+            android:id="@+id/txtSwipeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgCircle"
+            android:layout_marginStart="10dp"
+            android:text="@string/andoird"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/txtSwipeSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgCircle"
+            android:layout_below="@+id/txtSwipeTitle"
+            android:layout_marginStart="10dp"
+            android:text="@string/subtitel"
+            android:textStyle="bold"
+            />
+    </RelativeLayout>
+</FrameLayout>
